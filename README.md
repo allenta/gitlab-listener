@@ -38,6 +38,7 @@ QUICK START
     # Appends a JIRA work log to issues ALLGEN-12 and GTTSLT-2.
     $ git commit -m "ALLGEN-12 GTTSLT-2 Bumped new version #time 1h 15m"
     ```
+
 COMMIT MESSAGES
 ===============
 
