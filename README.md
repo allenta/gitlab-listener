@@ -2,8 +2,8 @@
 
 **[GitLab Listener](https://marketplace.atlassian.com/plugins/com.allenta.jira.plugins.gitlab.gitlab-listener) is a JIRA add-on allowing the reception of [GitLab](https://about.gitlab.com) push events using GitLab project web hooks.** This add-on allows integration of commits pushed to GitLab inside JIRA issues. Issue keys are extracted from commit messages; then, these messages are logged as JIRA comments, activities and / or work logs linking back to the GitLab changesets.
 
-QUICKSTART
-==========
+QUICK START
+===========
 
 1. **Install the add-on** following the [instructions available in the Atlassian Marketplace](https://marketplace.atlassian.com/plugins/com.allenta.jira.plugins.gitlab.gitlab-listener).
 
@@ -38,3 +38,19 @@ QUICKSTART
     # Appends a JIRA work log to issues ALLGEN-12 and GTTSLT-2.
     $ git commit -m "ALLGEN-12 GTTSLT-2 Bumped new version #time 1h 15m"
     ```
+COMMIT MESSAGES
+===============
+
+- **Commit format is `<ISSUE-1> [<ISSUE-2> <ISSUE-3> ...] <description of the commit> [#time <duration> [<annotation to be included in the JIRA work log>]]`.**
+
+- **The default JIRA issue key format is the only supported.** This format is two or more uppercase letters, followed by a hyphen and the issue number, for example ALLGEN-123.
+
+- Users can reference **multiple issues in the same commit message**, but all of them **at the begging** of the message and **separated by whitespace**.
+
+- You may **enforce inclusion of JIRA issues in all commit messages** defining a simple git hook in the local copies of the repositories.
+
+- **The e-mail address included in the commit data must match some e-mail address in the JIRA user base.** Otherwise, if defined in the add-on settings, some fallback JIRA user will be used. Along with a match of the e-mail address:
+    + The JIRA user must have permission to comment issues in the particular project. Unlike comments, generation of JIRA activities does not require any special permission. 
+    + When using the `#time` directive, the user must have permission to log work on the issue.
+
+- **When referencing more than one issue and using the `#time` directive, a entry is added to the work log of all the referenced issues.**
