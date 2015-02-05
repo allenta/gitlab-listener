@@ -1,8 +1,6 @@
-**[GitLab Listener](https://marketplace.atlassian.com/plugins/com.allenta.jira.plugins.gitlab.gitlab-listener) is a JIRA add-on allowing the reception of [GitLab](https://about.gitlab.com) push events using GitLab project web hooks.**
+![GitLab Listener banner](https://github.com/allenta/gitlab-listener/raw/master/banner.png)
 
-[logo]: https://github.com/allenta/gitlab-listener/raw/master/banner.png "GitLab Listener banner"
-
-This add-on allows integration of commits pushed to GitLab inside JIRA issues. Issue keys are extracted from commit messages; then, these messages are logged as JIRA comments, activities and / or work logs linking back to the GitLab changesets.
+**[GitLab Listener](https://marketplace.atlassian.com/plugins/com.allenta.jira.plugins.gitlab.gitlab-listener) is a JIRA add-on allowing the reception of [GitLab](https://about.gitlab.com) push events using GitLab project web hooks.** This add-on allows integration of commits pushed to GitLab inside JIRA issues. Issue keys are extracted from commit messages; then, these messages are logged as JIRA comments, activities and / or work logs linking back to the GitLab changesets.
 
 QUICKSTART
 ==========
