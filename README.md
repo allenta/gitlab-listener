@@ -61,3 +61,11 @@ COMMIT MESSAGES
 - **When referencing more than one issue and using the `#time` directive, a entry is added to the work log of all the referenced issues.**
 
 - **When referencing more than one issue and using the `#action` directive, a workflow transition is executed in all the referenced issues.**
+
+
+CONFIGURATION OPTIONS
+=====================
+
+- checkbox "Use activities instead of comments"
+
+When this option is unchecked, any changeset pushed to GitLab referencing one or more JIRA issues will be logged as a comment in the 'Comments' tab of the issue in JIRA. However, if the option is checked, the pushed changeset will be logged in the 'Activities' tab of the issue.
