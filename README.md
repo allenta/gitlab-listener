@@ -35,21 +35,21 @@ QUICK START
 
     # Appends a JIRA comment / activity to issues ALLGEN-22 and ALLGEN-10.
     # Appends a JIRA work log to issues ALLGEN-22 and ALLGEN-10, each one including the description 'Completed ahead of schedule'.
-    $ git commit -m "ALLGEN-22 ALLGEN-10 Added all diagrams #time 1w 2d 4h 30m Completed ahead of schedule"
+    $ git commit -m "Added all diagrams #time 1w 2d 4h 30m Completed ahead of schedule #refs ALLGEN-22 ALLGEN-10"
 
     # Appends a JIRA comment / activity to issues ALLGEN-12 and GTTSLT-2.
     # Appends a JIRA work log to issues ALLGEN-12 and GTTSLT-2.
-    $ git commit -m "ALLGEN-12 GTTSLT-2 Bumped new version #time 1h 15m"
+    $ git commit -m "Bumped new version #refs ALLGEN-12 GTTSLT-2 #time 1h 15m"
     ```
 
 COMMIT MESSAGES
 ===============
 
-- **Commit format is `<ISSUE-1> [<ISSUE-2> <ISSUE-3> ...] <description of the commit> [#time <duration> [<annotation to be included in the JIRA work log>]] [#action <workflow action to be executed>[, <resolution>]]`.**
+- **Commit format is `<ISSUE-1> [<ISSUE-2> <ISSUE-3> ...] <description of the commit> [#refs <ISSUE-4> [<ISSUE-5> <ISSUE-6> ...]] [#time <duration> [<annotation to be included in the JIRA work log>]] [#action <workflow action to be executed>[, <resolution>]]`.**
 
 - **The default JIRA issue key format is the only supported.** This format is two or more uppercase letters, followed by a hyphen and the issue number, for example ALLGEN-123.
 
-- Users can reference **multiple issues in the same commit message**, but all of them **at the begging** of the message and **separated by whitespace**.
+- Users can reference **multiple issues in the same commit message**, separated by whitespace at the begging of the message or using the `#refs` directive anywhere inside the commit message.
 
 - You may **enforce inclusion of JIRA issues in all commit messages** defining a simple git hook in the local copies of the repositories.
 
