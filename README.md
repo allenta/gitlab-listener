@@ -11,10 +11,10 @@ QUICK START
     - **A shared secret** between GitLab & JIRA.
     - **Several fallback JIRA usernames** to be used when the e-mail address in a commit message does not match any existing JIRA user. If a valid JIRA user is not available while processing commits, comments / activities, work logs and / or workflow transitions linked to those unmatched commits won't be generated / executed.
 
-3. **For each GitLab project you want to integrate with JIRA, set up a web hook** in order to submit all push events to the listener add-on. If defined in the previous step, remember to include the value of the secret in the query string of the URL:
+3. **For each GitLab project you want to integrate with JIRA, set up a web hook** in order to submit all push events to the listener add-on. If defined in the previous step, remember to include the value of the secret in the query string of the URL. When integrating multiple GitLab instances with JIRA you must use the ``instance`` field in the query string (simply use a different instance name in each GitLab instance; this allows the add-on to differentiate commits notified by each instance):
 
     ```
-    https://www.example.com/jira/plugins/servlet/gitlab/listener?secret=t0ps3cr3t
+    https://www.example.com/jira/plugins/servlet/gitlab/listener?secret=t0ps3cr3t&instance=default
     ```
 
 4. **Start pushing commits with messages including references to JIRA issues and work log information.** Some examples:
@@ -69,3 +69,10 @@ CONFIGURATION OPTIONS
 - checkbox "Use activities instead of comments"
 
 When this option is unchecked, any changeset pushed to GitLab referencing one or more JIRA issues will be logged as a comment in the 'Comments' tab of the issue in JIRA. However, if the option is checked, the pushed changeset will be logged in the 'Activities' tab of the issue.
+
+PERFORMANCE
+===========
+
+The add-on uses a simple underlying table (``AO_9B0D9B_PROCESSED_COMMIT``) to keep track of the commits already processed. Because of limitations of the Active Objects framework, the add-on cannot create indexes and unique constraints that span more than one column on installation time.
+
+Please, ask you DBA to manually create an index and unique constraint spanning the ``INSTANCE``, ``PROJECT`` and ``HASH`` columns. This is not required, but it should boost performance on busy environments.
