@@ -47,7 +47,7 @@ COMMIT MESSAGES
 
 - **Commit format is `<ISSUE-1> [<ISSUE-2> <ISSUE-3> ...] <description of the commit> [#refs <ISSUE-4> [<ISSUE-5> <ISSUE-6> ...]] [#time <duration> [<annotation to be included in the JIRA work log>]] [#action <workflow action to be executed>[, <resolution>]]`.**
 
-- **The default JIRA issue key format is the only supported.** This format is two or more uppercase letters, followed by a hyphen and the issue number, for example ALLGEN-123.
+- **The default JIRA issue key format is the only supported.** This format is a project identifier (as defined in the `jira.projectkey.pattern` property), followed by a hyphen and the issue number, for example ALLGEN-123.
 
 - Users can reference **multiple issues in the same commit message**, separated by whitespace at the begging of the message or using the `#refs` directive anywhere inside the commit message.
 
