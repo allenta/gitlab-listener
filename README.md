@@ -9,7 +9,8 @@ QUICK START
 
 2. **Configure the add-on** according with your preferences. Optionally you can set:
     - **A shared secret** between GitLab & JIRA.
-    - **Several fallback JIRA usernames** to be used when the e-mail address in a commit message does not match any existing JIRA user. If a valid JIRA user is not available while processing commits, comments / activities, work logs and / or workflow transitions linked to those unmatched commits won't be generated / executed.
+    - **A list of e-mail addresses mapping to JIRA usernames** to be used when the e-mail address in a commit message does not match any existing JIRA user.
+    - **Several fallback JIRA usernames** to be used when a JIRA user is not available. If a JIRA user is not available while processing commits, comments / activities, work logs and / or workflow transitions linked to those unmatched commits won't be generated / executed.
 
 3. **For each GitLab project you want to integrate with JIRA, set up a web hook** in order to submit all push events to the listener add-on. If defined in the previous step, remember to include the value of the secret in the query string of the URL. When integrating multiple GitLab instances with JIRA you must use the ``instance`` field in the query string (simply use a different instance name in each GitLab instance; this allows the add-on to differentiate commits notified by each instance):
 
@@ -47,13 +48,13 @@ COMMIT MESSAGES
 
 - **Commit format is `<ISSUE-1> [<ISSUE-2> <ISSUE-3> ...] <description of the commit> [#refs <ISSUE-4> [<ISSUE-5> <ISSUE-6> ...]] [#time <duration> [<annotation to be included in the JIRA work log>]] [#action <workflow action to be executed>[, <resolution>]]`.**
 
-- **The default JIRA issue key format is the only supported.** This format is a project identifier (as defined in the `jira.projectkey.pattern` property), followed by a hyphen and the issue number, for example ALLGEN-123.
+- **The configured JIRA issue key format (`jira.projectkey.pattern` property) is the one supported.** This format usually is two or more uppercase letters, followed by a hyphen and the issue number, for example ALLGEN-123.
 
-- Users can reference **multiple issues in the same commit message**, separated by whitespace at the begging of the message or using the `#refs` directive anywhere inside the commit message.
+- Users can reference **multiple issues in the same commit message**, separated by whitespace at the begging of the message or using the `#refs` directive anywhere inside the commit message. There is also an option available to enable searching of issue keys in the whole commit message.
 
 - You may **enforce inclusion of JIRA issues in all commit messages** defining a simple git hook in the local copies of the repositories.
 
-- **The e-mail address included in the commit data must match some e-mail address in the JIRA user base.** Otherwise, if defined in the add-on settings, some fallback JIRA user will be used. Along with a match of the e-mail address:
+- **The e-mail address included in the commit data must match some e-mail address in the JIRA user base.** Otherwise, if defined in the add-on settings, some explicit e-mail address - JIRA user mapping rules will be used. Finally, fallback JIRA users will be used if everything fails and they are defined in the add-on settings. Along with a match of the e-mail address:
     + The JIRA user must have permission to comment issues in the particular project. Unlike comments, generation of JIRA activities does not require any special permission. 
     + When using the `#time` directive, the user must have permission to log work on the issue.
     + When using the `#action` directive, (1) the user must have permission to execute workflow transitions to the issue; and (2) the workflow action to be executed should be valid according with the current status of the issue. 
@@ -61,7 +62,6 @@ COMMIT MESSAGES
 - **When referencing more than one issue and using the `#time` directive, a entry is added to the work log of all the referenced issues.**
 
 - **When referencing more than one issue and using the `#action` directive, a workflow transition is executed in all the referenced issues.**
-
 
 GITLAB LISTENER VS. BUILT-IN GITLAB-JIRA INTEGRATION
 ====================================================
@@ -81,6 +81,17 @@ GitLab CE / EE includes a basic GitLab-JIRA integration. It covers some simple u
 - Link GitLab and JIRA users instead of generating JIRA comments using a generic JIRA API user as the basic integration does.
 
 - Support multiple JIRA issue key formats.
+
+HOW TO ENABLE DEBUG LEVEL?
+==========================
+
+1. Log in as an user with the 'JIRA System Administrators' global permission.
+
+2. Choose 'System'. Then select 'Troubleshooting and Support > Logging & Profiling' to open the Logging page.
+
+3. Scroll to the 'Default Loggers' section and click 'Configure logging level for another package'.
+
+4. Package name is ``com.allenta.jira.plugins.gitlab.listener.Servlet``.
 
 PERFORMANCE
 ===========
