@@ -87,7 +87,11 @@ HOW TO ENABLE DEBUG LEVEL?
 
 1. Log in as an user with the 'JIRA System Administrators' global permission.
 
-2. Choose 'System'. Then select 'Troubleshooting and Support > Logging & Profiling' to open the Logging page.
+2. Choose 'System'. Then select 
+
+  * __Jira v7 and earlier:__ Choose 'System'. Then select 'Troubleshooting and Support > Logging & Profiling' to open the Logging page.
+
+  * __Jira v8 and newer:__ 'Logging & Profiling' under 'SYSTEM SUPPORT' to open the Logging page.
 
 3. Scroll to the 'Default Loggers' section and click 'Configure logging level for another package'.
 
