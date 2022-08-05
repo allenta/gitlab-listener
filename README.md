@@ -1,3 +1,7 @@
+| **IMPORTANT ANNOUCEMENT** |
+|---|
+| The GitLab Listener add-on for Jira Server **will no longer be supported post version 8.x and it will not be ported to Jira Data Center or Jira Cloud**. We apologize for any inconvenience this may cause and we thank all users of the add-on for their support and patronage throughout the years. |
+
 ![GitLab Listener banner](https://github.com/allenta/gitlab-listener/raw/master/banner.png)
 
 **[GitLab Listener](https://marketplace.atlassian.com/plugins/com.allenta.jira.plugins.gitlab.gitlab-listener) is a JIRA add-on allowing the reception of [GitLab](https://about.gitlab.com) push events using GitLab project web hooks.** This add-on allows integration of commits pushed to GitLab inside JIRA issues. Issue keys are extracted from commit messages; then, these messages are logged as JIRA comments, activities, work logs and / or workflow transitions linking back to the GitLab changesets.
